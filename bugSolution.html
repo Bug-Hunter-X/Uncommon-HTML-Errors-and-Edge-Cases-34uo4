@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Uncommon HTML Error Solution</title>
+</head>
+<body>
+  <p>This is a paragraph.</p>
+  <div id="myDiv"></div>
+
+  <script>
+    //Safely access an attribute
+    let element = document.getElementById("myDiv");
+    let attributeValue = element ? element.getAttribute("data-nonexistent") : null; //Check for null first
+    console.log(attributeValue); // Output: null
+
+    //Handle the possibility of a null element
+    let nullElement = document.getElementById("nonExistentElement");
+    if (nullElement) {
+      nullElement.innerHTML = "This will execute only if the element exists";
+    } else {
+      console.warn("Element 'nonExistentElement' not found.");
+    }
+
+    //Instead of modifying a read-only attribute, create a new element with the desired changes
+    let img = document.createElement('img');
+    img.src = 'image.jpg';
+    let newImg = document.createElement('img');
+    newImg.src = 'anotherImage.jpg';
+    document.body.appendChild(newImg);
+  </script>
+</body>
+</html>
